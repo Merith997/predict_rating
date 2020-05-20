@@ -1,7 +1,7 @@
 // Drop everything that was there previously
 MATCH (u) DETACH DELETE u;
 CALL apoc.schema.assert(NULL, NULL);
-// Recreate constraints
+// Recreate constraints on 4 node types
 CREATE CONSTRAINT movie_id ON (m:Movie) ASSERT m.id IS UNIQUE;
 CREATE CONSTRAINT user_id ON (u:User) ASSERT u.id IS UNIQUE;
 CREATE CONSTRAINT test_user_id ON (u:Test) ASSERT u.id IS UNIQUE;
