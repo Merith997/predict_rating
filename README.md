@@ -7,18 +7,16 @@ OUTLINE:
     This paper discusses and presents some methods of calculating a reviewer's rating of a movie, based on a database.
 
 **INTRODUCTION:**\
-    The database used in this paper will be from Grouplens's movielens dataset. In more details, it will be specifically the 3 datasets:
-        -  *MovieLens 25M Dataset*
-        -  MovieLens Small Dataset
-        -  *MovieLens Full Dataset*
-
+    The database used in this paper will be from Grouplens's movielens dataset. In more details, it will be specifically the 3 datasets:\
+        -  *MovieLens 25M Dataset*\
+        -  MovieLens Small Dataset\
+        -  *MovieLens Full Dataset*\
     So far, only the Small Dataset has been tested (May 23, Noon)
-    In each dataset, only 4 files are considered so far: 
-        1. ratings.csv
-        2. movies.csv
-        3. links.csv
-        4. tags.csv
-
+    In each dataset, only 4 files are considered so far: \
+        1. ratings.csv\
+        2. movies.csv\
+        3. links.csv\
+        4. tags.csv\
     With regards to usable information, only 2 files: ratings.csv and movies.csv are necessary. 
 
 **PROBLEM:**\
