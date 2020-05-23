@@ -6,7 +6,7 @@ OUTLINE:
 
     In the movie industry, the ability to predict whether a movie is going to be popular and well-received is very important.
     This paper discusses and presents some methods of calculating a reviewer's rating of a movie, based on a database.
-     
+
 **INTRODUCTION:**
 
     The database used in this paper will be from Grouplens's movielens dataset. In more details, it will be specifically the 3 datasets:
@@ -20,7 +20,7 @@ OUTLINE:
         2. movies.csv
         3. links.csv
         4. tags.csv
-        5. 
+
     With regards to usable information, only 2 files: ratings.csv and movies.csv are necessary. 
 **PROBLEM:**
 
