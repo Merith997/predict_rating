@@ -17,7 +17,18 @@ OUTLINE:
     With regards to usable information, only 2 files: ratings.csv and movies.csv are necessary. 
 **PROBLEM:**
     One would need to be able to predict a reviewer's rating as precise as possible. 
-
 **SOLUTION:**
     In order to solve this problem, the dataset must be used to build clusters of similar movies in a way that if a new viewer comes along, then they can be sorted into similar cluster either based on their movies.
-    
+    After splitting the dataset, into 80% for training and cluster building and 20% for testing, the training dataset can be used to build a similar relationship between the movies. 
+    This can be calculated by their genre simillarity (Specifically can be calculated by Jaccard's Similarity) in combination with a similar rating of a viewer. The principle behind this idea is that if a viewer watches movies that are similar to each other, then their rating must also be similar. 
+    To combat situation where a similar movie might have been done terribly, the cosine similarity of the rating required to form a similar relationship between the movies must also be higher than a threshold.
+
+**CORRECTNESS PROOF:**
+
+**EXAMPLES:**
+
+**DRAWBACK:**
+
+**CONCLUSION:**
+
+**REFERENCES:**
