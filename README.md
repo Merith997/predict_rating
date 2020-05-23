@@ -3,12 +3,10 @@
 OUTLINE:
 
 **ABSTRACT:**
-
     In the movie industry, the ability to predict whether a movie is going to be popular and well-received is very important.
     This paper discusses and presents some methods of calculating a reviewer's rating of a movie, based on a database.
 
 **INTRODUCTION:**
-
     The database used in this paper will be from Grouplens's movielens dataset. In more details, it will be specifically the 3 datasets:
         -  *MovieLens 25M Dataset*
         -  MovieLens Small Dataset
@@ -22,11 +20,11 @@ OUTLINE:
         4. tags.csv
 
     With regards to usable information, only 2 files: ratings.csv and movies.csv are necessary. 
+
 **PROBLEM:**
-
     One would need to be able to predict a reviewer's rating as precise as possible. 
-**SOLUTION:**
 
+**SOLUTION:**
     In order to solve this problem, the dataset must be used to build clusters of similar movies in a way that if a new viewer comes along, then they can be sorted into similar cluster either based on their movies.
 
     After splitting the dataset, into 80% for training and cluster building and 20% for testing, the training dataset can be used to build a similar relationship between the movies. 
@@ -40,7 +38,7 @@ OUTLINE:
 **EXAMPLES:**
 
 **DRAWBACK:**
-    
+
 **CONCLUSION:**
 
 **REFERENCES:**
