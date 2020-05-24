@@ -20,15 +20,28 @@ OUTLINE:
     With regards to usable information, only 2 files: ratings.csv and movies.csv are necessary. 
 
 **PROBLEM:**  
-    One would need to be able to predict a reviewer's rating as precise as possible. 
+    In this case, the only data give about the users are the movies that they watch (and the rating, but that is what needed to be predict, so it cannot be used in calculation). How would one use the available data only to predict as close as possible to the true rating. After finding a method, then the next step is to find a way to predict many rating as much as possible.
 
 **SOLUTION:**  
-    In order to solve this problem, the dataset must be used to build clusters of similar movies in a way that if a new viewer comes along, then they can be sorted into similar cluster either based on their movies.  
-    After splitting the dataset, into 80% for training and cluster building and 20% for testing, the training dataset can be used to build a similar relationship between the movies.  
-    This can be calculated by their genre simillarity (Specifically can be calculated by Jaccard's Similarity) in combination with a similar rating of a viewer. The principle behind this idea is that if a viewer watches movies that are similar to each other, then their rating must also be similar.  
-    To combat situation where a similar movie might have been done terribly, the cosine similarity of the rating required to form a similar relationship between the movies must also be higher than a threshold.
+    In order to solve this problem, the prediction must be based on some data. In this particular case, the data is taken from one of the database mentioned above. 
+    
+    The principle behind the following idea is that if a viewer watches movies that are similar to each other, then each respective rating must also be similar. When predicting a user's movie rating, they can be infer from users who rated similar movies. The closeness in similarity would be used to determine a tolerable margin of error. 
+
+    For each dataset, they are used to build clusters of similar movies in a way that if a new viewer comes along, then they can be sorted into similar cluster either based on their movies rating.  
+
+    The data is randomly splitting the user dataset into an 80/20 ratio. The 80% is for cluster and relationship building, whereas the 20% is for testing. The training data includes all the movies, since a new movie coming in will be requiring a lot more work (This will be further discuss at the Drawback section of the paper).  
+
+    After creating the similar relationship, there is also a need to calculate **how** similar the movies are to each other. At this point, another problem must be considered:  
+        A strict person can never give a movie a 5/5 star review, whereas a generous person might never give 1/5 star review. In order to account for both of their rating distribution, all of the ratings must be normalized. This can be done by expanding their rating range (lowest to 0, and highest to 5)  
+    
+    In addition to using the ratings that a person has given to their respective movies, one can also use the genres of the movies to take into account. This can be calculated by using Jaccard's Similarity. 
+
+    However, being in the same genre is not enough, since within the genre, there are many different movie qualities, that are reflected by the ratings. Therefore, the Cosine Similarity can be used to determine the similarity of the rating.
+
+    Only after calculating the 2 similarities, and they both satisfy a tolerance level, can there be a similar relationship between the movies.
 
 **CORRECTNESS PROOF:**\
+
 
 **EXAMPLES:**
     Given the datasets mentioned above in the Introduction part as the examples, here are the implementation of the solutions:  
