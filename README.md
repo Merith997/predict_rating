@@ -8,9 +8,9 @@ OUTLINE:
 
 **INTRODUCTION:**\
     The database used in this paper will be from Grouplens's movielens dataset. In more details, it will be specifically the 3 datasets:\
-        >-  *MovieLens 25M Dataset*\
-        >-  MovieLens Small Dataset\
-        >-  *MovieLens Full Dataset*\
+    *MovieLens 25M Dataset*\
+    MovieLens Small Dataset\
+    *MovieLens Full Dataset*\
     So far, only the Small Dataset has been tested (May 23, Noon)
     In each dataset, only 4 files are considered so far: \
         >1. ratings.csv\
@@ -33,6 +33,8 @@ OUTLINE:
 **EXAMPLES:**
     Given the datasets mentioned above in the Introduction part as the examples, here are the implementation of the solutions:
     * MovieLens Small Dataset: 
+    * MovieLens 25M Dataset:
+    * MovieLens Full Dataset:
 
 **DRAWBACK:**\
 
