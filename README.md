@@ -31,8 +31,8 @@ For each dataset, they are used to build clusters of similar movies in a way tha
 
 The data is randomly splitting the user dataset into an 80/20 ratio. The 80% is for cluster and relationship building, whereas the 20% is for testing. The training data includes all the movies, since a new movie coming in will be requiring a lot more work (This will be further discuss at the Drawback section of the paper).  
 
-After creating the similar relationship, there is also a need to calculate **how** similar the movies are to each other. At this point, another problem must be considered:  
-    A strict person can never give a movie a 5/5 star review, whereas a generous person might never give 1/5 star review. In order to account for both of their rating distribution, all of the ratings must be normalized. This can be done by expanding their rating range (lowest to 0, and highest to 5)  
+After creating the similar relationship, there is also a need to calculate **how** similar the movies are to each other. At this point, another problem must be considered: 
+>   A strict person can never give a movie a 5/5 star review, whereas a generous person might never give 1/5 star review. In order to account for both of their rating distribution, all of the ratings must be normalized. This can be done by expanding their rating range (lowest to 0, and highest to 5)  
     
 In addition to using the ratings that a person has given to their respective movies, one can also use the genres of the movies to take into account. This can be calculated by using Jaccard's Similarity. 
 
@@ -44,13 +44,17 @@ Only after calculating the 2 similarities, and they both satisfy a tolerance lev
 
 
 **EXAMPLES:**
-    Given the datasets mentioned above in the Introduction part as the examples, here are the implementation of the solutions:  
+Given the datasets mentioned above in the Introduction part as the examples, here are the implementation of the solutions:  
      * MovieLens Small Dataset:  
      * MovieLens 25M Dataset:  
      * MovieLens Full Dataset:  
 
-**DRAWBACK:**\
-    Currently the prediction is based solely on the genre category, where as incorporating the gnome would further details the separation. This however, is based on a scoring system, and therefore would need additional scoring between each relevant relationships seen above.
+**DRAWBACK:**
+Currently the prediction is based solely on the genre category, where as incorporating the gnome would further details the separation. This however, is based on a scoring system, and therefore would need additional scoring between each relevant relationships seen above.
+
+Another drawback mentioned above is the need of having a viewer's movie already in the dataset. However, predicting an already made movie is not as useful as one would want to be able to predict a new movie. Perhaps this is a problem in creating a movie, but not knowing how the public will receive it. However, to take into account new movies, the program will also need to be able to input data, and each time predicting, there would need to be consideration to the old dataset, and how to accomodate newer ones. 
+
+Last but not least, this method of prediction is based on the ratings of the users who are included in the dataset. These are chosen at random, however, they may or may not actually able to represent the true random of the people, nor the outliers, who would rate movies in their own methods. Therefore, this method can only predict but not at a 100% success rate. In the future, this can be improved with more usage of statistics, and perhaps taken into account the type of viewers, which then can consider the biases and improve prediction even more.
 
 **CONCLUSION:**\
 
