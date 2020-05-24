@@ -8,9 +8,9 @@ OUTLINE:
 
 **INTRODUCTION:**  
     The database used in this paper will be from Grouplens's movielens dataset. In more details, it will be specifically the 3 datasets:  
-        * *MovieLens 25M Dataset*  
-        * MovieLens Small Dataset  
-        * *MovieLens Full Dataset*  
+    * *MovieLens 25M Dataset*  
+    * MovieLens Small Dataset  
+    * *MovieLens Full Dataset*  
     So far, only the Small Dataset has been tested (May 23, Noon)
     In each dataset, only 4 files are considered so far:   
         >1. ratings.csv  
@@ -20,7 +20,7 @@ OUTLINE:
     With regards to usable information, only 2 files: ratings.csv and movies.csv are necessary. 
 
 **PROBLEM:**  
-    In this case, the only data give about the users are the movies that they watch (and the rating, but that is what needed to be predict, so it cannot be used in calculation). How would one use the available data only to predict as close as possible to the true rating. After finding a method, then the next step is to find a way to predict many rating as much as possible.
+In this case, the only data give about the users are the movies that they watch (and the rating, but that is what needed to be predict, so it cannot be used in calculation). How would one use the available data only to predict as close as possible to the true rating. After finding a method, then the next step is to find a way to predict many rating as much as possible.
 
 **SOLUTION:**  
 In order to solve this problem, the prediction must be based on some data. In this particular case, the data is taken from one of the database mentioned above.  
