@@ -32,9 +32,9 @@ OUTLINE:
 
 **EXAMPLES:**
     Given the datasets mentioned above in the Introduction part as the examples, here are the implementation of the solutions:  
-    * MovieLens Small Dataset:  
-    * MovieLens 25M Dataset:  
-    * MovieLens Full Dataset:  
+     * MovieLens Small Dataset:  
+     * MovieLens 25M Dataset:  
+     * MovieLens Full Dataset:  
 
 **DRAWBACK:**\
     Currently the prediction is based solely on the genre category, where as incorporating the gnome would further details the separation. This however, is based on a scoring system, and therefore would need additional scoring between each relevant relationships seen above.
