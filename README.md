@@ -40,7 +40,7 @@ However, being in the same genre is not enough, since within the genre, there ar
 
 Only after calculating the 2 similarities, and they both satisfy a tolerance level, can there be a similar relationship between the movies.
 
-**CORRECTNESS PROOF:**\
+**CORRECTNESS PROOF:**  
 
 
 **EXAMPLES:**
@@ -56,6 +56,6 @@ Another drawback mentioned above is the need of having a viewer's movie already 
 
 Last but not least, this method of prediction is based on the ratings of the users who are included in the dataset. These are chosen at random, however, they may or may not actually able to represent the true random of the people, nor the outliers, who would rate movies in their own methods. Therefore, this method can only predict but not at a 100% success rate. In the future, this can be improved with more usage of statistics, and perhaps taken into account the type of viewers, which then can consider the biases and improve prediction even more.
 
-**CONCLUSION:**\
+**CONCLUSION:**  
 
-**REFERENCES:**\
+**REFERENCES:**  
