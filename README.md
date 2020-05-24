@@ -8,9 +8,9 @@ OUTLINE:
 
 **INTRODUCTION:**\
     The database used in this paper will be from Grouplens's movielens dataset. In more details, it will be specifically the 3 datasets:\
-    *MovieLens 25M Dataset*\
-    MovieLens Small Dataset\
-    *MovieLens Full Dataset*\
+        * *MovieLens 25M Dataset*\
+        * MovieLens Small Dataset\
+        * *MovieLens Full Dataset*\
     So far, only the Small Dataset has been tested (May 23, Noon)
     In each dataset, only 4 files are considered so far: \
         >1. ratings.csv\
