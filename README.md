@@ -32,7 +32,7 @@ After creating the similar relationship, there is also a need to calculate **how
 
 In order to account for both of their rating distribution, all of the ratings must be normalized. This can be done by expanding their rating range (lowest to 0, and highest to 5)  
 
-***Method 1 - Movie Similarity:***  
+### Method 1 - Movie Similarity:  
 The principle behind the idea is that if a viewer watches movies that are similar to each other, then each respective rating must also be similar. When predicting a user's movie rating, they can be infer from users who rated similar movies. The closeness in similarity would be used to determine a tolerable margin of error.  
     
 In addition to using the ratings that a person has given to their respective movies, one can also use the genres of the movies to take into account. This can be calculated by using Jaccard's Similarity. 
@@ -41,7 +41,7 @@ However, being in the same genre is not enough, since within the genre, there ar
 
 Only after calculating the 2 similarities, and they both satisfy a tolerance level, can there be a similar relationship between the movies.
 
-***Method 2 - User Similarity:***  
+### Method 2 - User Similarity:  
 
 The principle behind the idea is that predicting a viewer's ratings on movies with others who also directly watches those movies. This method however, must also filter out those who have watched the movies, but have different taste in movies. This is achieved via ensuring those viewers not only watches that one movie, but also at least 80% of the list of common movies between them. This limit sets a lower bound on the similarities between all the viewers chosen with the one that is being predicted. 
     
@@ -58,13 +58,35 @@ In the calculation, there are also the method of calculating the average rating 
 ## **EXAMPLES:**
 Given the datasets mentioned above in the Introduction part as the examples, here are the implementation of the solutions:  
     * MovieLens Small Dataset:  
-### Step 1: Start the neo4j server
+### Step 1: Start the neo4j server  
 
-### Step 2: Setting constraints and importing MovieLens data from GroupLens
+Since the dataset is not a small one, the community edition is preferred, over the Desktop version.
 
-### Step 3: After setting the constraints, initiate the relationships per methods
+### Step 2: Setting constraints and importing MovieLens data from GroupLens  
 
-### Step 4: Export the data result as files needed
+In order to calculate faster, and avoid duplicates, the constraints are added above. In the process of importing the ratings from ratings.csv, the User class is also created to link their id and the ratings to respective movies.
+
+### Step 3: After setting the constraints, initiate the relationships per methods  
+
+#### Method 1 - Movie Similarity:  
+
+In this case, the similarity depends on 2 factors: the common genres, and user's rating of movies that are similar to those that the test user watched. 
+
+The common genres are calculated by Jaccard Similarity, while the viewer's rating is based on cosine similarity. 
+
+#### Method 2 - User Similarity:  
+
+In this case, the similarity depends on 1 factor: the common movies and their genres.
+
+The common genres are calculated by Jaccard Similarity, while the viewer's rating is based on cosine similarity. 
+
+### Step 4: Calculate the predictions and compile them to count the number of acceptable predictions  
+
+At this step, the result above can be applied to any amount of users (as the id is inserted into the list, and can be changed anytime using the randomly selected user query). Above, the query returned a result as the user id, the respected number of prediction that perfectly matches with the data, within 0.5 rating, and then the rest.
+
+### Step 5: Export the data result as needed, in this case, to Gephi  
+
+After using Gephi in conjunction with APOC's own procedure query, the data can be visualized such as above.
 
 ## **DRAWBACK:**
 Currently the prediction is based solely on the genre category, where as incorporating the gnome would further details the separation. This however, is based on a scoring system, and therefore would need additional scoring between each relevant relationships seen above.
