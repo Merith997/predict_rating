@@ -1,6 +1,6 @@
 # predict_rating
 
-OUTLINE:
+DRAFT
 
 **ABSTRACT:**  
     In the movie industry, the ability to predict whether a movie is going to be popular and well-received is very important.
