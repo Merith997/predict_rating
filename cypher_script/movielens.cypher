@@ -31,12 +31,12 @@ WITH map
 // Normalize user ratings
 // TBC: Normalize base on 0-5 scale
 //
-# MATCH (u:User)-[r:RATE]->(m:Movie)
-# WITH u, AVG(r.original_rating) AS u_avg
-# 	SET u.avg_rating = u_avg
-# WITH AVG(u_avg) AS s_avg
-# 	MATCH (u:User)-[r:RATE]->(m:Movie)
-# 		SET r.rating = r.original_rating*s_avg/u.avg_rating;
+MATCH (u:User)-[r:RATE]->(m:Movie)
+WITH u, AVG(r.original_rating) AS u_avg
+	SET u.avg_rating = u_avg
+WITH AVG(u_avg) AS s_avg
+	MATCH (u:User)-[r:RATE]->(m:Movie)
+		SET r.rating = r.original_rating*s_avg/u.avg_rating;
 
 ------------------------------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ MATCH (u:User)
 	WHERE NOT('Test' IN LABELS(u))
 		SET u:Train;
 
-# MATCH (u:User) REMOVE u:Test, u:Train
+MATCH (u:User) REMOVE u:Test, u:Train
 
 ------------------------------------------------------------------------------------------
 
