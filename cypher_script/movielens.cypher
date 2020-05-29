@@ -231,7 +231,7 @@ CALL apoc.periodic.iterate(
 
 // MATCH ()-[r:NEAREST]-() DETACH DELETE r;
 
-WITH [84, 545, 514, 308, 362, 601, 564, 117, 58, 434] AS l
+WITH [593, 397, 421, 36, 18, 23, 168, 48, 102, 532] AS l
 	MATCH (u:Test)
 		WHERE u.id IN l
 WITH u
@@ -251,25 +251,3 @@ RETURN u.id, REDUCE(l=[0, 0, 0], e IN ec |
 
 ------------------------------------------------------------------------------------------
 
-// User's genre interests
-//
-WITH [84] AS l
-	MATCH (u:Test)
-		WHERE u.id IN l
-WITH u
-	MATCH (u)-[:RATE]->(m:Movie)
-	WITH u, COUNT(m) AS um, COLLECT([g IN m.genres | [g, 1.0]]) AS gl
-	WITH u, um, REDUCE(l=[], e IN gl | l + e) AS gl
-	RETURN u, um, apoc.map.sortedProperties(REDUCE(m=apoc.map.fromPairs([]), e IN gl |
-		CASE apoc.map.get(m, e[0], NULL, False)
-			WHEN NULL THEN apoc.map.setKey(m, e[0], e[1])
-			ELSE apoc.map.setKey(m, e[0], apoc.map.get(m, e[0]) + e[1])
-			END)) AS ugm
-
-// Similar movies seen by the same user
-WITH [84] AS l
-	MATCH (u:Test)
-		WHERE u.id IN l
-WITH u
-	MATCH (u)-[r1:RATE]->(m:Movie)-[sr:SIMILAR]-(o:Movie)<-[r2:RATE]-(u)
-RETURN DISTINCT(m.title) AS title, r1.rating, m.genres, COUNT(sr) AS sc ORDER BY sc DESC
