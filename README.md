@@ -75,6 +75,8 @@ In order to calculate faster, and avoid duplicates, the constraints are added ab
 
 #### Method 1 - Movie Similarity:  
 
+![Similar_movie](https://github.com/Merith997/predict_rating/blob/master/Images/Similar%20movies.png)
+
 In this case, the similarity depends on 2 factors: the common genres, and user's rating of movies that are similar to those that the test user watched. 
 
 The common genres are calculated by Jaccard Similarity, while the viewer's rating is based on cosine similarity. 
@@ -89,7 +91,17 @@ The common genres are calculated by Jaccard Similarity, while the viewer's ratin
 
 ### Step 4: Calculate the predictions and compile them to count the number of acceptable predictions  
 
-At this step, the result above can be applied to any amount of users (as the id is inserted into the list, and can be changed anytime using the randomly selected user query). Above, the query returned a result as the user id, the respected number of prediction that perfectly matches with the data, within 0.5 rating, and then the rest.
+#### Method 1's output:
+
+![Similar_movie](https://github.com/Merith997/predict_rating/blob/master/Images/Screenshot%20from%202020-05-29%2011-52-18.png)
+
+#### Method 2's output:
+
+![Nearby_User](https://github.com/Merith997/predict_rating/blob/master/Images/Screenshot%20from%202020-05-29%2011-52-00.png)
+
+At this step, the result above can be applied to any amount of users (as the id is inserted into the list, and can be changed anytime using the randomly selected user query). Above, the query returned a result as the user id, the respected number of prediction that perfectly matches with the data, within 0.5 rating, and then the rest. The mse collumn consists of the mean square error, which can be interpreted as the lower it is, the more precise the prediction is.  
+The first column is the method where the predicted rating is created from simply taking average of all the ratings of train users who watches that movie. The second column in the method's 1 output is the predicted via the training data and the similar movie algorithm.  
+From there, one can see that the algorithm, while not perfectly, but usually produce a better prediction.
 
 ### Step 5: Export the data result as needed, in this case, to Gephi  
 
