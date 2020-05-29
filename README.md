@@ -105,7 +105,7 @@ From there, one can see that the algorithm, while not perfectly, but usually pro
 
 ### Step 5: Export the data result as needed, in this case, to Gephi  
 
-![Gephi]()
+![Gephi](https://github.com/Merith997/predict_rating/blob/master/Images/screenshot_141147.png)
 
 After using Gephi in conjunction with APOC's own procedure query, the data can be visualized such as above. In this case, the picture shown is a presentation of how similar movies are to each other, and the size of the node are how many viewers rated it.
 
@@ -117,5 +117,7 @@ Another drawback mentioned above is the need of having a viewer's movie already 
 Last but not least, this method of prediction is based on the ratings of the users who are included in the dataset. These are chosen at random, however, they may or may not actually able to represent the true random of the people, nor the outliers, who would rate movies in their own methods. Therefore, this method can only predict but not at a 100% success rate. In the future, this can be improved with more usage of statistics, and perhaps taken into account the type of viewers, which then can consider the biases and improve prediction even more.
 
 ## **CONCLUSION:**  
+
+As one can see by the end, the project have produced result of the predictions, which mostly wavers around the rate of predicting close to half of the movies for each viewers on average.
 
 ## **REFERENCES:**  
