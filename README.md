@@ -81,6 +81,8 @@ The common genres are calculated by Jaccard Similarity, while the viewer's ratin
 
 #### Method 2 - User Similarity:  
 
+![User_neighbor](https://github.com/Merith997/predict_rating/blob/master/Images/User%20nearby.png)
+
 In this case, the similarity depends on 1 factor: the common movies and their genres.
 
 The common genres are calculated by Jaccard Similarity, while the viewer's rating is based on cosine similarity. 
