@@ -118,6 +118,4 @@ Last but not least, this method of prediction is based on the ratings of the use
 
 ## **CONCLUSION:**  
 
-As one can see by the end, the project have produced result of the predictions, which mostly wavers around the rate of predicting close to half of the movies for each viewers on average.
-
-## **REFERENCES:**  
+As one can see by the end, the project have produced result of the predictions close to more than half of the movies for each viewers on average. When simply averaging the train users' rating as the baseline, then the method of using similar movies can produce result almost always, and more than half of those predictions are better than the ones given by the baseline calculation. The method of finding similar user, however, are much more selective in producing result. It requires neighbors who can satisfy the condition stated in the code, and since this is a small dataset, the neighbor may not always exists. 
