@@ -51,10 +51,6 @@ However, being in the same genre is not enough, since within the genre, there ar
 
 Only after calculating the 2 similarities, and they both satisfy a tolerance level, can there be a similar relationship between the movies.
 
-
-## **CORRECTNESS PROOF:**  
-In the calculation, there are also the method of calculating the average rating of 
-
 ## **EXAMPLES:**
 Given the datasets mentioned above in the Introduction part as the examples, here are the implementation of the solutions:  
     * MovieLens Small Dataset:  
