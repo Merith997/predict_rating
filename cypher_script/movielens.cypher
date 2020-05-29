@@ -1,5 +1,5 @@
 MATCH (u) DETACH DELETE u;
-
+CALL apoc.schema.assert(NULL, NULL);
 ------------------------------------------------------------------------------------------
 
 // Create node constraints
