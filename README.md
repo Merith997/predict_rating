@@ -105,7 +105,9 @@ From there, one can see that the algorithm, while not perfectly, but usually pro
 
 ### Step 5: Export the data result as needed, in this case, to Gephi  
 
-After using Gephi in conjunction with APOC's own procedure query, the data can be visualized such as above.
+![Gephi]()
+
+After using Gephi in conjunction with APOC's own procedure query, the data can be visualized such as above. In this case, the picture shown is a presentation of how similar movies are to each other, and the size of the node are how many viewers rated it.
 
 ## **DRAWBACK:**
 Currently the prediction is based solely on the genre category, where as incorporating the gnome would further details the separation. This however, is based on a scoring system, and therefore would need additional scoring between each relevant relationships seen above.
