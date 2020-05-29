@@ -13,7 +13,7 @@ CREATE CONSTRAINT train_user_id ON (u:Train) ASSERT u.id IS UNIQUE;
 
 // Import movie data
 //
-LOAD CSV WITH HEADERS FROM 'file:///ml-latest-small/movies.csv' AS map
+LOAD CSV WITH HEADERS FROM 'file:///movies.csv' AS map
 CREATE (m:Movie {
 	id: TOINTEGER(map.movieId),
 	title: map.title,
@@ -22,7 +22,7 @@ CREATE (m:Movie {
 
 // Import user & rating data
 //
-LOAD CSV WITH HEADERS FROM 'file:///ml-latest-small/ratings.csv' AS map
+LOAD CSV WITH HEADERS FROM 'file:///ratings.csv' AS map
 WITH map
 	MATCH (m:Movie {id: TOINTEGER(map.movieId)})
 	MERGE (u:User {id: TOINTEGER(map.userId)})
@@ -236,84 +236,6 @@ WITH [84, 545, 514, 308, 362, 601, 564, 117, 58, 434] AS l
 		WHERE u.id IN l
 WITH u
 	MATCH (u)-[:NEAREST]-(o:Train)
-WITH u, o
-	MATCH (u)-[r1:RATE]->(m:Movie)<-[r2:RATE]-(o)
-WITH DISTINCT(m) AS m, u, r1.rating AS u_rating, AVG(r2.rating) AS a_rating
-WITH u, COLLECT(ABS(u_rating-a_rating)) AS ec, SUM((u_rating-a_rating)^2)/COUNT(m) AS mse
-RETURN u.id, REDUCE(l=[0, 0, 0], e IN ec |
-	CASE e <= 0.5
-    	WHEN TRUE THEN [l[0]+1, l[1], l[2]]
-        ELSE CASE e <= 1.0
-        	WHEN TRUE THEN [l[0], l[1]+1, l[2]]
-            ELSE [l[0], l[1], l[2]+1] END
-       END
-) AS err, mse AS n_mse ORDER BY u.id;
-
-
-------------------------------------------------------------------------------------------
-
-// Calculate user similarity based on:
-// - number of movies rated by both users: at least 4
-// - cosine similarity score of both users based seen movie genres: at least 0.9
-//
-CALL apoc.periodic.iterate(
-'
-	MATCH (u:Test)-[:RATE]->(m:Movie)
-	WITH u, COUNT(m) AS um, COLLECT([g IN m.genres | [g, 1.0]]) AS gl
-	WITH u, um, REDUCE(l=[], e IN gl | l + e) AS gl
-	RETURN u, um, REDUCE(m=apoc.map.fromPairs([]), e IN gl |
-		CASE apoc.map.get(m, e[0], NULL, False)
-			WHEN NULL THEN apoc.map.setKey(m, e[0], e[1])
-			ELSE apoc.map.setKey(m, e[0], apoc.map.get(m, e[0]) + e[1])
-			END) AS ugm
-','
-	WITH u, um, ugm
-		MATCH (u)-[:RATE]->(m:Movie)<-[:RATE]->(o:Train)
-	WITH DISTINCT(o) AS o, COUNT(m) AS mc, u, um, ugm
-	WITH u, um, ugm, mc, o
-		MATCH (o)-[:RATE]->(m:Movie)
-	WITH u, um, ugm, mc, o, COUNT(m) AS om, COLLECT([g IN m.genres | [g, 1.0]]) AS gl
-	WITH u, um, ugm, mc, o, om, REDUCE(l=[], e IN gl | l + e) AS gl
-	WITH
-		u, um, ugm, mc, o, om,
-		REDUCE(m=apoc.map.fromPairs([]), e IN gl |
-			CASE apoc.map.get(m, e[0], NULL, False)
-				WHEN NULL THEN apoc.map.setKey(m, e[0], e[1])
-				ELSE apoc.map.setKey(m, e[0], apoc.map.get(m, e[0]) + e[1])
-				END) AS ogm
-	WITH
-		u, um, mc, o, om,
-		REDUCE(l=[0, 0, 0], e IN apoc.map.sortedProperties(ugm) |
-			CASE apoc.map.get(ogm, e[0], NULL, False)
-				WHEN NULL THEN l ELSE [
-					l[0] + apoc.map.get(ugm, e[0])*apoc.map.get(ogm, e[0]),
-					l[1]+apoc.map.get(ugm, e[0])^2,
-					l[2]+apoc.map.get(ogm, e[0])^2]
-				END) AS coeffs
-	WITH u, um, o, om, mc AS common_ratings, coeffs[0]/SQRT(coeffs[1]*coeffs[2]) AS genre_cosine
-	WITH u, o, common_ratings, genre_cosine
-		WHERE common_ratings >= 4 AND genre_cosine >= 0.9
-	WITH u, o, common_ratings, genre_cosine ORDER BY genre_cosine DESC, common_ratings DESC LIMIT 20
-		MERGE (u)-[:COMMON {
-			common_ratings: common_ratings,
-			genre_cosine: genre_cosine
-		}]-(o)
-',
-	{batchSize: 1}
-)
-
-# MATCH (u:Test)-[:COMMON]-()
-# WITH DISTINCT(u) AS u, COUNT(*) AS nc
-# WITH nc, COUNT(u) AS uc ORDER BY nc DESC
-# RETURN SUM(uc);
-
-# MATCH ()-[r:COMMON]-() DETACH DELETE r;
-
-WITH [84, 545, 514, 308, 362, 601, 564, 117, 58, 434] AS l
-	MATCH (u:Test)
-		WHERE u.id IN l
-WITH u
-	MATCH (u)-[:COMMON]-(o:Train)
 WITH u, o
 	MATCH (u)-[r1:RATE]->(m:Movie)<-[r2:RATE]-(o)
 WITH DISTINCT(m) AS m, u, r1.rating AS u_rating, AVG(r2.rating) AS a_rating
