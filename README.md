@@ -60,14 +60,14 @@ Given the datasets mentioned above in the Introduction part as the examples, her
     * MovieLens Small Dataset:  
 ### Step 1: Start the neo4j server  
 
-!(https://github.com/Merith997/predict_rating/blob/master/Images/Initiate%20Neo4j%20to%20start.png)
+![Terminal pic](https://github.com/Merith997/predict_rating/blob/master/Images/Initiate%20Neo4j%20to%20start.png)
 
 Since the dataset is not a small one, the community edition is preferred, over the Desktop version.
 
 ### Step 2: Setting constraints and importing MovieLens data from GroupLens  
 
-!(https://github.com/Merith997/predict_rating/blob/master/Images/Create%20constraints.png)
-!(https://github.com/Merith997/predict_rating/blob/master/Images/import%20data%20and%20normalized.png)
+![Constraint](https://github.com/Merith997/predict_rating/blob/master/Images/Create%20constraints.png)
+![Normalization](https://github.com/Merith997/predict_rating/blob/master/Images/import%20data%20and%20normalized.png)
 
 In order to calculate faster, and avoid duplicates, the constraints are added above. In the process of importing the ratings from ratings.csv, the User class is also created to link their id and the ratings to respective movies.
 
