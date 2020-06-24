@@ -1,4 +1,4 @@
-# predict_rating
+# Movie Recommendation
 
 ## **ABSTRACT:** 
 Predicting a person's rating of a movie is a very hard problem. To predict the rating, there are many ways, based on available data. A way to approach this is through building clusters of similar movies, or people, and then compare a new user to those clusters. The more closer a person is to a cluster, the more their rating can be predicted by the cluster. 
